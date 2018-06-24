@@ -31,7 +31,7 @@ class PostsTableSeeder extends Seeder
                 'excerpt' => $faker->text(rand(250, 300)),
                 'body' => $faker->paragraphs(rand(10, 15), true),
                 'slug' => $faker->slug(),
-                'image' => $faker->rand(0, 1) == 1 ? $image : NULL,
+                'image' => rand(0, 1) == 1 ? $image : NULL,
                 'created_at' => $date,
                 'updated_at' => $date,
             ];
