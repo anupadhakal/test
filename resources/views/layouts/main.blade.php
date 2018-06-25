@@ -57,6 +57,6 @@
         </div>
     </footer>
 
-    <script src="{{ @asset('js/bootstrap.min.js') .bash_profile}}"></script>
+    <script src="{{ @asset('js/bootstrap.min.js') }}"></script>
 </body>
 </html>
