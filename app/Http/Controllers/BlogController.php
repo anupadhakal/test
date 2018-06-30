@@ -7,9 +7,15 @@ use App\Post;
 
 class BlogController extends Controller
 {
+    protected $limit = 3;
     public function index()
     {
-        $posts = Post::all();
+        //to check the queries run causing n+1 problem
+        //  \DB::enableQueryLog();
+        // $posts = Post::all();
+        $posts = Post::with('author')->latestFirst()->Published()->simplePaginate($this->limit);
+        // view("blog.index", compact('posts'))->render();
+        // dd(\DB::getQueryLog());
         return view("blog.index", compact('posts'));
 
     }
