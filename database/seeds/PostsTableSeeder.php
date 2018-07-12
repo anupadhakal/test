@@ -14,6 +14,7 @@ class PostsTableSeeder extends Seeder
     public function run()
     {   
         //reset the post table
+        
         DB::table('posts')->truncate();
 
         //generate 10 dummy post data
@@ -38,7 +39,8 @@ class PostsTableSeeder extends Seeder
                 'image' => rand(0, 1) == 1 ? $image : NULL,
                 'created_at' => $createdDate,
                 'updated_at' => $createdDate,
-                'published_at' => $i < 5 ? $publishedDate : ( rand(0, 1) == 0 ? NULL : $publishedDate->addDays(4))
+                'published_at' => $i < 5 ? $publishedDate : ( rand(0, 1) == 0 ? NULL : $publishedDate->addDays(4)),
+                'category_id' => rand(1, 5)
             ];
         }
 
