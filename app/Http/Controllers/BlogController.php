@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Category;
+use App\User;
 
 class BlogController extends Controller
 {
@@ -24,7 +25,7 @@ class BlogController extends Controller
         //to check the queries run causing n+1 problem
         // $posts = Post::with('author')::all();
 
-        
+
         $posts = Post::with('author')
                 ->latestFirst()
                 ->Published()
@@ -51,6 +52,22 @@ class BlogController extends Controller
                           ->simplePaginate($this->limit);
         
         return view("blog.index", compact('posts','categoryName'));
+
+    }
+
+    public function author(User $author)
+    {   
+
+        // dd($author->name);
+        $authorName = $author->name;
+
+        $posts = $author->posts()
+                          ->with('category')
+                          ->latestFirst()
+                          ->Published()
+                          ->simplePaginate($this->limit);
+        
+        return view("blog.index", compact('posts','authorName'));
 
     }
 
